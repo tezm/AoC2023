@@ -14,4 +14,4 @@
  (public_name aoc2023_day_02)
  (name day_02)
  (modules day_02)
- (libraries aoc2023))
+ (libraries aoc2023 re))
