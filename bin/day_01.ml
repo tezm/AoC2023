@@ -17,7 +17,7 @@ let extract_number line =
 ;;
 
 let () =
-  let input = Aoc2023.read_lines "day_01.input" in
+  let input = Aoc2023.read_lines "./inputs/day_01.input" in
   Format.printf "Part 1: %d@."
   @@ List.fold ~init:0 ~f:( + )
   @@ List.map ~f:extract_number
@@ -59,7 +59,7 @@ let get_numbers_in_string str =
 ;;
 
 let () =
-  let input = Aoc2023.read_lines "day_01.input" in
+  let input = Aoc2023.read_lines "./inputs/day_01.input" in
   List.fold input ~init:0 ~f:(fun acc str ->
     let numbs = get_numbers_in_string str in
     let digits = List.hd_exn numbs in
