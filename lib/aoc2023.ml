@@ -10,9 +10,3 @@ let read_lines file =
     let x = In_channel.input_all channel in
     String.split_lines x)
 ;;
-
-let is_digit digit =
-  match digit with
-  | '0' .. '9' -> true
-  | _ -> false
-;;
