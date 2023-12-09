@@ -16,12 +16,13 @@ let extract_number line =
   tens + ones
 ;;
 
-let input_part_1 = Aoc2023.read_lines "day_1_part_1.input";;
-
-Format.printf "Part 1: %d@."
-@@ List.fold ~init:0 ~f:( + )
-@@ List.map ~f:extract_number
-@@ input_part_1
+let () =
+  let input = Aoc2023.read_lines "day_01.input" in
+  Format.printf "Part 1: %d@."
+  @@ List.fold ~init:0 ~f:( + )
+  @@ List.map ~f:extract_number
+  @@ input
+;;
 
 let dict =
   [ "one", 1
@@ -43,4 +44,26 @@ let dict =
   ; "8", 8
   ; "9", 9
   ]
+;;
+
+let match_from_dict str pos =
+  List.find_map dict ~f:(fun (substr, value) ->
+    let re = Str.regexp_string substr in
+    match Str.string_match re str pos with
+    | true -> Some value
+    | false -> None)
+;;
+
+let get_numbers_in_string str =
+  List.filter_map ~f:(match_from_dict str) @@ List.range 0 (String.length str)
+;;
+
+let () =
+  let input = Aoc2023.read_lines "day_01.input" in
+  List.fold input ~init:0 ~f:(fun acc str ->
+    let numbs = get_numbers_in_string str in
+    let digits = List.hd_exn numbs in
+    let ones = List.last_exn numbs in
+    acc + (digits * 10) + ones)
+  |> Format.printf "Part 2: %d@."
 ;;
